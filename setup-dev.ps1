@@ -11,3 +11,12 @@ commitizen init cz-conventional-changelog --yarn --dev --exact
 
 npx husky-init
 yarn
+npx husky add .husky/prepare-commit-msg 'exec < /dev/tty && git cz --hook || true'
+
+# Setup boilerplate needed
+yarn add @react-navigation/native
+yarn add formik yup dayjs axios
+expo install redux redux-persist redux-saga react-redux
+expo install @ui-kitten/components @eva-design/eva react-native-svg@9.13.6
+yarn add @react-native-async-storage/async-storage
+yarn add react-native-gesture-handler

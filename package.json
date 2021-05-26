@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "prepare": "husky install"
   },
   "dependencies": {
     "expo": "~41.0.1",
@@ -16,7 +17,30 @@
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0"
+    "@babel/core": "^7.14.3",
+    "@babel/eslint-parser": "^7.14.3",
+    "@typescript-eslint/eslint-plugin": "4.0.0",
+    "@typescript-eslint/parser": "4.0.0",
+    "babel-eslint": "10.0.0",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint": "7.5.0",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-flowtype": "5.2.0",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-jsx-a11y": "6.3.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "7.20.3",
+    "eslint-plugin-react-hooks": "4.0.8",
+    "prettier": "^2.3.0",
+    "prettier-eslint": "^12.0.0",
+    "husky": "^6.0.0"
   },
-  "private": true
+  "private": true,
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }

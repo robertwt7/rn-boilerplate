@@ -1,21 +1,17 @@
 import React, { useEffect } from "react";
 import { AutocompleteItem, Autocomplete } from "@ui-kitten/components";
-import { selectData } from "db/methods";
+import PropTypes from "prop-types";
+
+FormikAutoComplete.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object),
+};
 
 const filter = (item, query) =>
   item.title.toLowerCase().includes(query.toLowerCase());
 
-export default function FormikAutoComplete() {
+export default function FormikAutoComplete({ data }) {
   const [value, setValue] = React.useState(null);
-  const [data, setData] = React.useState([]);
-
-  useEffect(() => {
-    const query = "SELECT * from categories;";
-    const dbData = selectData(query);
-    if (dbData) {
-      setData(data);
-    }
-  }, []);
+  const [filteredData, setFilteredData] = React.useState(data);
 
   const onSelect = (index) => {
     setValue(data[index].name);
@@ -23,7 +19,7 @@ export default function FormikAutoComplete() {
 
   const onChangeText = (query) => {
     setValue(query);
-    setData(data.filter((item) => filter(item, query)));
+    setFilteredData(data.filter((item) => filter(item, query)));
   };
 
   const renderOption = (item, index) => (
@@ -37,7 +33,7 @@ export default function FormikAutoComplete() {
       onSelect={onSelect}
       onChangeText={onChangeText}
     >
-      {data.map(renderOption)}
+      {filteredData.map(renderOption)}
     </Autocomplete>
   );
 }

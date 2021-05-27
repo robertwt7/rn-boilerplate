@@ -1,5 +1,7 @@
 # Boilerplate for React native project
 
+All you need to make an app for react native application
+
 This project is a template starter kit with expo. Have `.eslintrc.js` integrated for best practices, also have many other packages to help speed up development.
 
 It has a blank workspace, with a redux containing modal message that we can display anytime by calling `shoeMessage` action from Redux

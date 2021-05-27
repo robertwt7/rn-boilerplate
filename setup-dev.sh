@@ -13,7 +13,8 @@ npx husky-init && yarn
 npx husky add .husky/prepare-commit-msg 'exec < /dev/tty && git cz --hook || true'
 
 # Setup boilerplate needed
-yarn add @react-navigation/native
+expo install @react-navigation/stack @react-navigation/native
+expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
 yarn add formik yup dayjs axios
 expo install redux redux-persist redux-saga react-redux
 expo install @ui-kitten/components @eva-design/eva react-native-svg@9.13.6

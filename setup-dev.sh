@@ -23,3 +23,8 @@ yarn add react-native-gesture-handler
 
 # For ui kittens web and webpack customisation
 yarn add --dev @expo/webpack-config
+
+# Testing
+yarn add jest-expo --dev
+yarn add react-test-renderer --dev
+yarn add --dev @testing-library/react-native

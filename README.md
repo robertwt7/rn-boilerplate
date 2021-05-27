@@ -10,6 +10,8 @@ Development tools installed:
 - [Eslint](https://eslint.org/)
 - [Commitizen](https://github.com/commitizen/cz-cli)
 - [Husky](https://github.com/typicode/husky)
+- [jest-expo](https://docs.expo.io/guides/testing-with-jest/)
+- [react-native-testing-library](https://github.com/callstack/react-native-testing-library)
 
 Helpers:
 - [Size utils](https://stackoverflow.com/questions/33628677/react-native-responsive-font-size)
@@ -25,3 +27,85 @@ Packages used here can be find in `setup-dev.sh`:
 - [Ui-kitten](https://github.com/akveo/react-native-ui-kitten)
 - [Async storage](https://github.com/react-native-async-storage/async-storage)
 - [React native gesture handler](https://github.com/software-mansion/react-native-gesture-handler)
+
+## How It Works
+
+### React Navigation
+We have setup `"@react-navigation/stack";` in `src/Routes.js` that has 1 default screen which is `HomeScreen`. 
+From here you can add extra screens and route according to your own application needs.
+
+### Forms
+We have a `formik` wrapper on used components with a `UI-kitten` UI library so it makes it soo easy for you to create forms.
+
+Example form:
+```
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import * as yup from "yup";
+import { Formik } from "formik";
+import { useDispatch } from "react-redux";
+import { Button } from "@ui-kitten/components";
+import { TextField } from "../components/forms";
+import { actions as messageActions } from "../store/ducks/message.duck";
+
+const validationSchema = yup.object().shape({
+  fullName: yup.string().required("Required"),
+});
+
+const initialValues = {
+  fullName: "",
+};
+
+export default function HomeScreen() {
+  const dispatch = useDispatch();
+
+  const handleFormSubmit = (values) => {
+    try {
+      dispatch(
+        messageActions.showMessage({
+          message: `My name is: ${values.fullName}`,
+        })
+      );
+    } catch (e) {
+      dispatch(
+        messageActions.showMessage({
+          message: "There are some error",
+        })
+      );
+    }
+  };
+  return (
+    <View style={styles.container}>
+      <Formik
+        validationSchema={validationSchema}
+        initialValues={initialValues}
+        onSubmit={handleFormSubmit}
+      >
+        {({ handleSubmit, isSubmitting }) => (
+          <>
+            <TextField label="Full Name" name="fullName" />
+            <Button onPress={handleSubmit} disabled={isSubmitting}>
+              Submit
+            </Button>
+          </>
+        )}
+      </Formik>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
+```
+
+### Testing
+
+Unit testing can be done with [jest](https://docs.expo.io/guides/testing-with-jest/), 
+jest configuration is automatically setup with the recommended pattern from expo. 

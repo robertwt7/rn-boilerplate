@@ -7,7 +7,7 @@ import { moderateScale } from "../../helpers";
 
 const styles = StyleSheet.create({
   message: {
-    fontSize: moderateScale(20),
+    fontSize: moderateScale(8),
     fontWeight: "500",
     marginVertical: 16,
   },

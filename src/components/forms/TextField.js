@@ -11,15 +11,18 @@ TextField.propTypes = {
 
 export default function TextField({ name, label, secure = false, ...props }) {
   const [field, meta] = useField(name);
-  const { setFieldValue, setFieldTouched } = useFormikContext();
+  const { setFieldValue, setFieldTouched, handleBlur } = useFormikContext();
 
   const handleType = useCallback(
     (text) => {
       setFieldValue(name, text);
-      setFieldTouched(name, true);
     },
     [name]
   );
+
+  const handleFocus = () => {
+    setFieldTouched(name);
+  };
 
   return (
     <Input
@@ -28,6 +31,8 @@ export default function TextField({ name, label, secure = false, ...props }) {
       label={label}
       caption={Boolean(meta.error && meta.touched) && String(meta.error)}
       secureTextEntry={secure}
+      onBlur={handleBlur(name)}
+      onFocus={handleFocus}
       onChangeText={handleType}
       {...props}
     />

@@ -1,13 +1,36 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import * as React from "react";
+import { Platform, StatusBar, StyleSheet, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { Provider } from "react-redux";
+import * as eva from "@eva-design/eva";
+import { PersistGate } from "redux-persist/es/integration/react";
+import { ApplicationProvider } from "@ui-kitten/components";
+import { Message } from "components";
+import { registerRootComponent } from "expo";
+import store, { persistor } from "./src/store/store";
+import Routes from "./src/Routes";
+import { default as kittenTheme } from "./src/kitten-theme.json";
 
-export default function App() {
+function App(props) {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <ApplicationProvider
+            {...eva}
+            theme={{ ...eva.light, ...kittenTheme }}
+          >
+            <View style={styles.container}>
+              {Platform.OS === "ios" && <StatusBar barStyle="default" />}
+              <NavigationContainer>
+                <Routes />
+                <Message />
+              </NavigationContainer>
+            </View>
+          </ApplicationProvider>
+        </PersistGate>
+      </Provider>
+    </>
   );
 }
 
@@ -15,7 +38,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
+
+export default registerRootComponent(App);

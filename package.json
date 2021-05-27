@@ -38,9 +38,11 @@
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/eslint-parser": "^7.14.3",
+    "@expo/webpack-config": "^0.12.74",
     "@typescript-eslint/eslint-plugin": "4.0.0",
     "@typescript-eslint/parser": "4.0.0",
     "babel-eslint": "10.0.0",
+    "babel-plugin-module-resolver": "^4.1.0",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "7.5.0",
     "eslint-config-airbnb": "18.2.1",

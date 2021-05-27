@@ -21,3 +21,6 @@ expo install redux redux-persist redux-saga react-redux
 expo install @ui-kitten/components @eva-design/eva react-native-svg@9.13.6
 yarn add @react-native-async-storage/async-storage
 yarn add react-native-gesture-handler
+
+# For ui kittens web and webpack customisation
+yarn add --dev @expo/webpack-config

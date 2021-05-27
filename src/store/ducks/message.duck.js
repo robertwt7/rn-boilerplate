@@ -1,5 +1,4 @@
 import React from "react";
-import * as _ from "lodash";
 
 export const actionTypes = {
   showMessage: "[SHOW MESSAGE]",

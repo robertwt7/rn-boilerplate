@@ -13,6 +13,19 @@ Development tools installed:
 - [jest-expo](https://docs.expo.io/guides/testing-with-jest/)
 - [react-native-testing-library](https://github.com/callstack/react-native-testing-library)
 
+Don't forget to add `formatOnSave` if you are using VSCode to format your code on save, makes life so much easier following the `.eslintrc.js` given on the boilerplate. For example:
+
+```
+    "[javascript]": {
+        "editor.defaultFormatter":"dbaeumer.vscode-eslint",
+        "editor.formatOnSave": true
+    },
+    "editor.codeActionsOnSave": {
+        // For ESLint
+        "source.fixAll.eslint": true,
+    },
+```
+
 Helpers:
 - [Size utils](https://stackoverflow.com/questions/33628677/react-native-responsive-font-size)
 

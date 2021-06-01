@@ -1,20 +1,31 @@
 import React, { useEffect } from "react";
 import { AutocompleteItem, Autocomplete } from "@ui-kitten/components";
 import PropTypes from "prop-types";
+import { useField, useFormik, useFormikContext } from "formik";
 
 FormikAutoComplete.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      id: PropTypes.number,
+    })
+  ),
 };
 
 const filter = (item, query) =>
   item.title.toLowerCase().includes(query.toLowerCase());
 
-export default function FormikAutoComplete({ data }) {
+export default function FormikAutoComplete({ name, data }) {
   const [value, setValue] = React.useState(null);
   const [filteredData, setFilteredData] = React.useState(data);
+  const [field, meta] = useField(name);
+  const { setFieldValue } = useFormikContext();
 
   const onSelect = (index) => {
     setValue(data[index].name);
+
+    // Submitted value is ID
+    setFieldValue(name, data[index].id);
   };
 
   const onChangeText = (query) => {
@@ -23,7 +34,7 @@ export default function FormikAutoComplete({ data }) {
   };
 
   const renderOption = (item, index) => (
-    <AutocompleteItem key={index} title={item.name} />
+    <AutocompleteItem key={item.id} title={item.name} />
   );
 
   return (

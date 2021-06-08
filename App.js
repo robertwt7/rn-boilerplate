@@ -26,8 +26,8 @@ const RootComponent = () => (
           {Platform.OS === "ios" && <StatusBar barStyle="default" />}
           <NavigationContainer>
             <Routes />
-            <Message />
           </NavigationContainer>
+          <Message />
         </View>
       </ApplicationProvider>
     </PersistGate>

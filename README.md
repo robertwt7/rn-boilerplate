@@ -44,7 +44,7 @@ Packages used here can be find in `setup-dev.sh`:
 ## How It Works
 
 ### React Navigation
-We have setup `"@react-navigation/stack";` in `src/Routes.js` that has 1 default screen which is `HomeScreen`. 
+We have setup `"@react-navigation/stack";` in `src/Routes.js` that has 1 default screen which is `HomeScreen`.
 From here you can add extra screens and route according to your own application needs.
 
 ### Forms
@@ -118,7 +118,21 @@ const styles = StyleSheet.create({
 
 ```
 
+### Feedbacks
+
+After every resolve or reject for form API, we should give a feedback to the user saying either it succeed, or failed.
+
+For this, there is a default `<Message />` component that is attached with the state saved in redux: `message.duck.js`
+
+To display a message in any component, simply do:
+```
+import { actions as messageActions } from "../store/ducks/message.duck";
+
+dispatch(actions.showMessage({ open: true, message: "Hello world" }));
+```
+
+
 ### Testing
 
-Unit testing can be done with [jest](https://docs.expo.io/guides/testing-with-jest/), 
-jest configuration is automatically setup with the recommended pattern from expo. 
+Unit testing can be done with [jest](https://docs.expo.io/guides/testing-with-jest/),
+jest configuration is automatically setup with the recommended pattern from expo.
